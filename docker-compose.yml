@@ -1,0 +1,20 @@
+version: "3.4"
+
+services:
+  golang:
+    build: .
+    volumes:
+      - ./src:/var/www:cached
+    tty: true
+    ports:
+      - 80:80
+    environment:
+      SERVER_PORT: 80
+    env_file:
+      - .env
+      # command: "air -c .air.toml"
+    networks:
+      - nuxt
+networks:
+  nuxt:
+    external: true
